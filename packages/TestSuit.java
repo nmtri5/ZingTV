@@ -43,8 +43,7 @@ public class TestSuit {
     @Test
     public void searchSuggestion(){
         Operations search = new Operations();
-        search.inputText("hau");
-
+        search.searchSuggestionList("11");
         search.backtoHome();
     }
 

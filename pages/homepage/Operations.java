@@ -30,13 +30,55 @@ public class Operations extends Objects {
         }
 
         public void verifyContentSuggestion(String s){
+            switchTab("nổi bật tab");
             List<AndroidElement> a = AndroidCommonFunctions.getElements("id", "tv_title");
+            System.out.println(a);
             if (a == null) {
 
                 AndroidCommonFunctions.isExisted("id", "tv_error");
             } else {
 
                 for (AndroidElement items : a) {
+                    System.out.println(items.getText());
+                    items.getText().contentEquals(s);
+
+                }
+            }
+            switchTab("chương trình tab");
+            a = AndroidCommonFunctions.getElements("id", "tv_title");
+            if (a == null) {
+
+                AndroidCommonFunctions.isExisted("id", "tv_error");
+            } else {
+
+                for (AndroidElement items : a) {
+                    System.out.println(items.getText());
+                    items.getText().contentEquals(s);
+
+                }
+            }
+            switchTab("video tab");
+            a = AndroidCommonFunctions.getElements("id", "tv_title");
+            if (a == null) {
+
+                AndroidCommonFunctions.isExisted("id", "tv_error");
+            } else {
+
+                for (AndroidElement items : a) {
+                    System.out.println(items.getText());
+                    items.getText().contentEquals(s);
+
+                }
+            }
+            switchTab("nghệ sĩ");
+            a = AndroidCommonFunctions.getElements("id", "tv_title");
+            if (a == null) {
+
+                AndroidCommonFunctions.isExisted("id", "tv_error");
+            } else {
+
+                for (AndroidElement items : a) {
+                    System.out.println(items.getText());
                     items.getText().contentEquals(s);
 
                 }
@@ -58,19 +100,18 @@ public class Operations extends Objects {
         }
 
         public void switchTab (String tab){
-            switch (tab) {
-                case "chương trình":
-                    program.click();
-                case "video":
-                    video.click();
-                case "nổi bật tab":
-                    HighlightTab.click();
-                case "chương trình tab":
-                    ProgramTab.click();
-                case "video tab":
-                    VideoTab.click();
-                case "nghệ sĩ":
-                    ArtistTab.click();
+            if (tab =="chương trình") {
+                program.click();
+            } else if (tab =="video"){
+                video.click();
+            } else if (tab =="nổi bật tab") {
+                HighlightTab.click();
+            } else if (tab == "chương trình tab") {
+                ProgramTab.click();
+            } else if (tab == "video tab") {
+                VideoTab.click();
+            } else if (tab == "nghệ sĩ"){
+                ArtistTab.click();
             }
         }
 
@@ -88,7 +129,7 @@ public class Operations extends Objects {
         public void searchSuggestionList (String keyword) {
             searchField.click();
             inputText(keyword);
-
+            verifyContentSuggestion(keyword);
         }
 
 
