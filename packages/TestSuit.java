@@ -7,13 +7,14 @@ import org.testng.annotations.Test;
 import pages.homepage.Operations;
 import supports.AndroidCommonFunctions;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 
 public class TestSuit {
 
 
     @BeforeClass
-    public void setUp() throws MalformedURLException {
+    public void setUp() throws IOException {
 
         AndroidCommonFunctions.launchApp("zingtv");
 
@@ -41,9 +42,23 @@ public class TestSuit {
     }
 
     @Test
-    public void searchSuggestion(){
+    public void searchSuggestion(){ //Testcase ID ZTTQTC_12
+        String keyword = "Hau";
+        keyword = keyword.toLowerCase();
         Operations search = new Operations();
-        search.searchSuggestionList("11");
+        search.perform_search_action(keyword);
+
+        search.switchTab("nổi bật tab");
+        Assert.assertTrue(search.verify_content_suggestion(keyword));
+
+        search.switchTab("chương trình tab");
+        Assert.assertTrue(search.verify_content_suggestion(keyword));
+
+        search.switchTab("video tab");
+        Assert.assertTrue(search.verify_content_suggestion(keyword));
+
+        search.switchTab("nghệ sĩ");
+        Assert.assertTrue(search.verify_content_suggestion(keyword));
         search.backtoHome();
     }
 

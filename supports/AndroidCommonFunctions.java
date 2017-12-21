@@ -13,6 +13,9 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -23,15 +26,24 @@ import java.util.List;
 public class AndroidCommonFunctions {
     private static AndroidDriver<AndroidElement> driver;
 
-    public static void launchApp(String whichApp) throws MalformedURLException{
+    public static void launchApp(String whichApp) throws IOException {
+        String device_info = null, device_version = null;
+
+            Process process1 = Runtime.getRuntime().exec("adb shell getprop ro.serialno");
+            Process process2 = Runtime.getRuntime().exec("adb shell getprop ro.build.version.release");
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(process1.getInputStream()));
+            BufferedReader in1 = new BufferedReader(new InputStreamReader(process2.getInputStream()));
+
+            device_info = in.readLine();
+            device_version = in1.readLine();
         DesiredCapabilities caps = new DesiredCapabilities();
 //        System.setProperty("platformVersion","8.0");
 
         //TODO: Which device?
-        caps.setCapability(MobileCapabilityType.DEVICE_NAME,"920135e8f45b743d");
+        caps.setCapability(MobileCapabilityType.DEVICE_NAME, device_info);
         caps.setCapability(MobileCapabilityType.PLATFORM_NAME,"android");
-//        caps.setCapability(MobileCapabilityType.PLATFORM_VERSION,androiversion);
-        caps.setCapability(MobileCapabilityType.PLATFORM_VERSION,"6.0.1");
+        caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, device_version);
 
         //TODO: Apps Under Testing
         /**

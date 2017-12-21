@@ -29,69 +29,37 @@ public class Operations extends Objects {
             return pattern.matcher(nfdNormalizedString).replaceAll("");
         }
 
-        public void verifyContentSuggestion(String s){
-            switchTab("nổi bật tab");
-            List<AndroidElement> a = AndroidCommonFunctions.getElements("id", "tv_title");
-            System.out.println(a);
-            if (a == null) {
-
-                AndroidCommonFunctions.isExisted("id", "tv_error");
-            } else {
-
-                for (AndroidElement items : a) {
-                    System.out.println(items.getText());
-                    items.getText().contentEquals(s);
-
-                }
-            }
-            switchTab("chương trình tab");
-            a = AndroidCommonFunctions.getElements("id", "tv_title");
-            if (a == null) {
-
-                AndroidCommonFunctions.isExisted("id", "tv_error");
-            } else {
-
-                for (AndroidElement items : a) {
-                    System.out.println(items.getText());
-                    items.getText().contentEquals(s);
-
-                }
-            }
-            switchTab("video tab");
-            a = AndroidCommonFunctions.getElements("id", "tv_title");
-            if (a == null) {
-
-                AndroidCommonFunctions.isExisted("id", "tv_error");
-            } else {
-
-                for (AndroidElement items : a) {
-                    System.out.println(items.getText());
-                    items.getText().contentEquals(s);
-
-                }
-            }
-            switchTab("nghệ sĩ");
-            a = AndroidCommonFunctions.getElements("id", "tv_title");
-            if (a == null) {
-
-                AndroidCommonFunctions.isExisted("id", "tv_error");
-            } else {
-
-                for (AndroidElement items : a) {
-                    System.out.println(items.getText());
-                    items.getText().contentEquals(s);
-
-                }
-            }
+        public boolean validateContent (boolean b){
+            return true;
         }
 
-        public void inputText(String a) {
+        public boolean verify_content_suggestion(String s){
+            List<AndroidElement> a = AndroidCommonFunctions.getElements("id", "tv_title");
+            if (a == null) {
+
+                return AndroidCommonFunctions.isExisted("id", "tv_error");
+            } else {
+                System.out.println(a.indexOf(0));
+                for (AndroidElement items : a) {
+
+                    return deAccent(items.getText().toLowerCase()).contains(s);
+
+                }
+            }
+            return a.size() > 0;
+        }
+
+        public void verify_content_homepage(){
+            
+        }
+
+        public void perform_search_action(String a) {
+            searchField.click();
             AndroidCommonFunctions.fill("id", "et_search_bar", a);
         }
 
         public void searchExist(String keyword) {
-            searchField.click();
-            inputText(keyword);
+            perform_search_action(keyword);
             allResult.click();
             String compare = AndroidCommonFunctions.getElement("id", "tv_title").getText();
             Assert.assertEquals(deAccent(keyword).toLowerCase(), deAccent(compare).toLowerCase());
@@ -99,39 +67,29 @@ public class Operations extends Objects {
             Assert.assertEquals(deAccent(keyword).toLowerCase(), deAccent(compare).toLowerCase());
         }
 
-        public void switchTab (String tab){
-            if (tab =="chương trình") {
-                program.click();
-            } else if (tab =="video"){
-                video.click();
-            } else if (tab =="nổi bật tab") {
-                HighlightTab.click();
-            } else if (tab == "chương trình tab") {
-                ProgramTab.click();
-            } else if (tab == "video tab") {
-                VideoTab.click();
-            } else if (tab == "nghệ sĩ"){
-                ArtistTab.click();
-            }
-        }
-
-
-
         public void searchNotExist (String keyword) {
-            searchField.click();
-            inputText(keyword);
+            perform_search_action(keyword);
             allResult.click();
             AndroidCommonFunctions.isExisted("id", "tv_error");
             switchTab("video");
             AndroidCommonFunctions.isExisted("id", "tv_error");
         }
 
-        public void searchSuggestionList (String keyword) {
-            searchField.click();
-            inputText(keyword);
-            verifyContentSuggestion(keyword);
+    public void switchTab (String tab){
+        if (tab =="chương trình") {
+            program.click();
+        } else if (tab =="video"){
+            video.click();
+        } else if (tab =="nổi bật tab") {
+            HighlightTab.click();
+        } else if (tab == "chương trình tab") {
+            ProgramTab.click();
+        } else if (tab == "video tab") {
+            VideoTab.click();
+        } else if (tab == "nghệ sĩ"){
+            ArtistTab.click();
         }
-
+    }
 
 
 
