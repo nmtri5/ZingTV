@@ -18,9 +18,13 @@ import javax.swing.text.Element;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import supports.AndroidCommonFunctions;
+import org.openqa.selenium.Dimension;
 
+import io.appium.java_client.TouchAction;
 
 public class testFunction {
     AndroidDriver driver;
@@ -37,41 +41,16 @@ public class testFunction {
         return ls1.containsAll(ls2) && ls1.size() == ls2.size() ? true :false;
     }
 
-    public boolean reachBottom(){
-        List <String> compare1 = new ArrayList<String>();
-        List <String> compare2 = new ArrayList<String>();
-        List <WebElement> check = driver.findElements(By.id("com.zing.tv3:id/tv_title"));
-
-        for (WebElement items: check)
-        {
-            compare1.add(items.getText());
-        }
-
-        TouchAction touchAction = new TouchAction(driver);
+    public static void swipeVertical(int startx, int starty, int endx, int endy) {
+        TouchAction touchAction = new TouchAction(AndroidCommonFunctions.getApp());
         touchAction.press(273, 439).moveTo(0, -30).release().perform();
-
-        List <WebElement> check1 = driver.findElements(By.id("com.zing.tv3:id/tv_title"));
-        for (WebElement items: check1)
-        {
-            compare2.add(items.getText());
-        }
-
-
-            if ( compareList(compare1, compare2) == true ) {
-                return true;
-            } else{
-
-            return false;
-
-            }
-
-        }
+    }
 
     @BeforeClass
     public void setUp() throws MalformedURLException {
         // Define what device and what app will run a test
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "920135e8f45b743d");
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "02c22b89f0a69944");
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "android");
         capabilities.setCapability(MobileCapabilityType.VERSION, "6.0.1");
         capabilities.setCapability("appPackage", "com.zing.tv3");
@@ -87,25 +66,9 @@ public class testFunction {
     }
 
     @Test (priority = 1)
-    public void checkCategory() { //Testcase ID: ZTTCTC_3: Kiểm tra giao diện các icon program control
+    public void swipe() throws Exception { //Testcase ID: ZTTCTC_3: Kiểm tra giao diện các icon program control
+        swipeVertical(273, 439, 0, -30 );
 
-        TouchAction touchAction = new TouchAction(driver);
+    }
 
-
-                touchAction.press(273, 439).moveTo(0, -30).release().perform();
-                List<WebElement> thumbnail = driver.findElements(By.id("com.zing.tv3:id/tv_title"));
-
-        for (WebElement items: thumbnail)
-              {
-                  System.out.println(items.getText());
-        }
-                for (int i = 0; i <= thumbnail.size() - 1; i++) {
-                    driver.findElement(By.xpath("//android.widget.TextView[@text='" + thumbnail.get(i).getText() + "']")).click();
-
-                    backtoHome();
-                }
-
-
-
-
-    }}
+}

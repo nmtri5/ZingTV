@@ -62,6 +62,12 @@ public class TestSuit {
         search.backtoHome();
     }
 
+    @Test
+    public void swipe(){
+        Operations content = new Operations();
+        content.swipeVertical(0.2,0.8,0.5);
+    }
+
 
 //    public String add(String a, String b) {
 //        String[] firstNumber = a.split("");

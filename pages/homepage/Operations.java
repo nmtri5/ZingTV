@@ -2,10 +2,11 @@ package pages.homepage;
 
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.aspectj.weaver.ast.And;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import supports.AndroidCommonFunctions;
+import io.appium.java_client.TouchAction;
 
 import java.text.Normalizer;
 import java.util.List;
@@ -29,28 +30,39 @@ public class Operations extends Objects {
             return pattern.matcher(nfdNormalizedString).replaceAll("");
         }
 
-        public boolean validateContent (boolean b){
-            return true;
-        }
+    public  void swipeVertical(double startPercentage, double finalPercentage, double anchorPercentage) {
+
+        Dimension size = AndroidCommonFunctions.getApp().manage().window().getSize();
+        int anchor = (int) (size.width * anchorPercentage);
+        int startPoint = (int) (size.height * startPercentage);
+        int endPoint = (int) (size.height * finalPercentage);
+
+
+        new TouchAction(AndroidCommonFunctions.getApp())
+                .press(anchor, startPoint)
+                .moveTo(anchor, endPoint)
+                .release().perform();
+    }
+
 
         public boolean verify_content_suggestion(String s){
-            List<AndroidElement> a = AndroidCommonFunctions.getElements("id", "tv_title");
-            if (a == null) {
+            List<AndroidElement> list_element = AndroidCommonFunctions.getElements("id", "tv_title");
+            if (list_element == null) {
 
                 return AndroidCommonFunctions.isExisted("id", "tv_error");
             } else {
-                System.out.println(a.indexOf(0));
-                for (AndroidElement items : a) {
+
+                for (AndroidElement items : list_element) {
 
                     return deAccent(items.getText().toLowerCase()).contains(s);
 
                 }
             }
-            return a.size() > 0;
+            return list_element.size() > 0;
         }
 
         public void verify_content_homepage(){
-            
+            List<AndroidElement> a = AndroidCommonFunctions.getElements("id", "tv_title");
         }
 
         public void perform_search_action(String a) {
