@@ -63,9 +63,27 @@ public class TestSuit {
     }
 
     @Test
-    public void swipe(){
+    public void swipe() throws InterruptedException {
         Operations content = new Operations();
         content.swipeVertical(0.2,0.8,0.5);
+        Thread.sleep(2000);
+        content.swipeVertical(0.2,0.8,0.5);
+        Thread.sleep(2000);
+        content.swipeVertical(0.2,0.8,0.5);
+        Thread.sleep(2000);
+        content.swipeVertical(0.2,0.8,0.5);
+        Thread.sleep(2000);
+        content.swipeVertical(0.2,0.8,0.5);
+        Thread.sleep(2000);
+        content.swipeVertical(0.2,0.8,0.5);
+        Thread.sleep(2000);
+        content.swipeVertical(0.2,0.8,0.5);
+        Thread.sleep(2000);
+        content.swipeVertical(0.2,0.8,0.5);
+        Thread.sleep(2000);
+        content.swipeVertical(0.2,0.8,0.5);
+        
+
     }
 
 

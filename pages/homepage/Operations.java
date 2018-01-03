@@ -37,10 +37,14 @@ public class Operations extends Objects {
         int startPoint = (int) (size.height * startPercentage);
         int endPoint = (int) (size.height * finalPercentage);
 
+        System.out.println(size);
+        System.out.println(anchor);
+        System.out.println(startPoint);
+        System.out.println(endPoint);
 
         new TouchAction(AndroidCommonFunctions.getApp())
                 .press(anchor, startPoint)
-                .moveTo(anchor, endPoint)
+                .moveTo(-50, -50)
                 .release().perform();
     }
 
@@ -86,6 +90,14 @@ public class Operations extends Objects {
             switchTab("video");
             AndroidCommonFunctions.isExisted("id", "tv_error");
         }
+
+        public boolean reachBottom () {
+            List <AndroidElement> list_element = AndroidCommonFunctions.getElements("id", "tv_title");
+            if (AndroidCommonFunctions.isExisted("text", "Hoạt Hình") && AndroidCommonFunctions.isExisted("text", "Xem thêm") && list_element.size() == 4){
+                return true;
+            }
+                return false;
+    }
 
     public void switchTab (String tab){
         if (tab =="chương trình") {
