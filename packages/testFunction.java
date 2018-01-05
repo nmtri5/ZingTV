@@ -37,6 +37,7 @@ public class testFunction {
 
         }
     }
+
     public static boolean compareList(List ls1, List ls2){
         return ls1.containsAll(ls2) && ls1.size() == ls2.size() ? true :false;
     }

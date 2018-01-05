@@ -61,7 +61,11 @@ public class AndroidCommonFunctions {
             caps.setCapability("appPackage","com.zing.tv3");
             caps.setCapability("appActivity", "com.vng.zingtv.activity.MainActivity");
         }
-        else System.err.print("Connot find app on your device, please try again");
+        else if (whichApp.equalsIgnoreCase("zingtvdev")){
+            caps.setCapability("appPackage","com.zing.tv3.dev");
+            caps.setCapability("appActivity", "com.vng.zingtv.activity.MainActivity");
+        }
+        else System.err.print("Cannot find app on your device, please try again");
 
         /**
          * Option 2: Install app from apk file

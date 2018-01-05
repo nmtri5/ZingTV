@@ -37,11 +37,6 @@ public class Operations extends Objects {
         int startPoint = (int) (size.height * startPercentage);
         int endPoint = (int) (size.height * finalPercentage);
 
-        System.out.println(size);
-        System.out.println(anchor);
-        System.out.println(startPoint);
-        System.out.println(endPoint);
-
         new TouchAction(AndroidCommonFunctions.getApp())
                 .press(anchor, startPoint)
                 .moveTo(-50, -50)
@@ -66,7 +61,19 @@ public class Operations extends Objects {
         }
 
         public void verify_content_homepage(){
-            List<AndroidElement> a = AndroidCommonFunctions.getElements("id", "tv_title");
+            boolean reach_bottom = false;
+            while (reach_bottom == false) {
+                swipeVertical(0.2,0.8,0.5);
+                List<AndroidElement> a = AndroidCommonFunctions.getElements("id", "tv_title");
+                for (AndroidElement items : a)
+                      {
+                    items.click();
+                    AndroidCommonFunctions.back();
+                }
+                reach_bottom = reachBottom();
+
+                
+            }
         }
 
         public void perform_search_action(String a) {
