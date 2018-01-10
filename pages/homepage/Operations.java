@@ -67,7 +67,9 @@ public class Operations extends Objects {
                 List<AndroidElement> a = AndroidCommonFunctions.getElements("id", "tv_title");
                 for (AndroidElement items : a)
                       {
-                    items.click();
+
+                    AndroidCommonFunctions.click("text",items.getText());
+
                     AndroidCommonFunctions.back();
                 }
                 reach_bottom = reachBottom();

@@ -92,7 +92,7 @@ public class AndroidCommonFunctions {
             case "id":
                 return driver.findElement(MobileBy.id(locator));
             case "text":
-                return driver.findElement((MobileBy.xpath(String.format(".//*[@text='%s'",locator))));
+                return driver.findElement((MobileBy.xpath(String.format(".//*[@text='%s']",locator))));
             case "accessibility":
                 return driver.findElementByAccessibilityId(locator);
             case "xpath":
@@ -109,7 +109,7 @@ public class AndroidCommonFunctions {
             case "id":
                 return driver.findElements(MobileBy.id(locator));
             case "text":
-                return driver.findElements((MobileBy.xpath(String.format(".//*[@text='%s'",locator))));
+                return driver.findElements((MobileBy.xpath(String.format(".//*[@text='%s']",locator))));
             case "accessibility":
                 return driver.findElementsByAccessibilityId(locator);
             case "xpath":
