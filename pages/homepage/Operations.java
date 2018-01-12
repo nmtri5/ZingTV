@@ -75,8 +75,10 @@ public class Operations extends Objects {
                     //Check element exist to know if it is now playing page
                           if (AndroidCommonFunctions.isExisted("id", "tv_program_name") == true){
                               Assert.assertEquals(items.getText(), AndroidCommonFunctions.getText("id", "tv_program_name"));
-                          } else {
+                          } else if (AndroidCommonFunctions.isExisted("id", "sdk_texture_view") == true) {
                               Assert.assertTrue(AndroidCommonFunctions.isExisted("id", "video_info_view"));
+                          } else {
+                              Assert.assertTrue(AndroidCommonFunctions.isExisted("id", "tv_error"));
                           }
                     AndroidCommonFunctions.back();
 
