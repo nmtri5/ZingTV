@@ -2,6 +2,7 @@ package pages.homepage;
 
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.aspectj.weaver.ast.And;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -64,13 +65,21 @@ public class Operations extends Objects {
             boolean reach_bottom = false;
             while (reach_bottom == false) {
                 swipeVertical(0.2,0.8,0.5);
+                AndroidCommonFunctions.waitForScreenToLoad(AndroidCommonFunctions.getApp(), AndroidCommonFunctions.getElement("id", "tv_title"), 1);
                 List<AndroidElement> a = AndroidCommonFunctions.getElements("id", "tv_title");
                 for (AndroidElement items : a)
                       {
 
                     AndroidCommonFunctions.click("text",items.getText());
 
+                    //Check element exist to know if it is now playing page
+                          if (AndroidCommonFunctions.isExisted("id", "tv_program_name") == true){
+                              Assert.assertEquals(items.getText(), AndroidCommonFunctions.getText("id", "tv_program_name"));
+                          } else {
+                              Assert.assertTrue(AndroidCommonFunctions.isExisted("id", "video_info_view"));
+                          }
                     AndroidCommonFunctions.back();
+
                 }
                 reach_bottom = reachBottom();
 
