@@ -70,6 +70,12 @@ public class TestSuit {
 
     }
 
+    @Test
+    public void switchTab() {
+        Operations tab = new Operations();
+        tab.switchTab("cá nhân");
+    }
+
 
 
 //    public String add(String a, String b) {

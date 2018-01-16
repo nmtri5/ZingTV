@@ -18,13 +18,13 @@ public class Operations extends Objects {
     }
 
     public void switchTab (String tab){
-        if (tab =="chương trình") {
+        if (tab =="trang chủ") {
             trangchu.click();
-        } else if (tab =="video"){
+        } else if (tab =="khám phá"){
             khampha.click();
-        } else if (tab =="nổi bật tab") {
+        } else if (tab =="cá nhân") {
             canhan.click();
-        } else if (tab == "chương trình tab") {
+        } else if (tab == "thêm") {
             them.click();
         }
     }
