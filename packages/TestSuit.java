@@ -72,8 +72,9 @@ public class TestSuit {
 
     @Test
     public void switchTab() {
-        Operations tab = new Operations();
+        pages.user_info.Operations tab = new pages.user_info.Operations();
         tab.switchTab("cá nhân");
+
     }
 
 

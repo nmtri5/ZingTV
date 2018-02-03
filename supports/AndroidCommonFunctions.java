@@ -65,6 +65,10 @@ public class AndroidCommonFunctions {
             caps.setCapability("appPackage","com.zing.tv3.dev");
             caps.setCapability("appActivity", "com.vng.zingtv.activity.MainActivity");
         }
+        else if (whichApp.equalsIgnoreCase("zingtvqc")){
+            caps.setCapability("appPackage","com.zing.tv3.qc");
+            caps.setCapability("appActivity", "com.vng.zingtv.activity.MainActivity");
+        }
         else System.err.print("Cannot find app on your device, please try again");
 
         /**
