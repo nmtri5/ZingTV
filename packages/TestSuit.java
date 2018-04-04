@@ -16,7 +16,7 @@ public class TestSuit {
     @BeforeClass
     public void setUp() throws IOException {
 
-        AndroidCommonFunctions.launchApp("zingtvdev");
+        AndroidCommonFunctions.launchApp("zingtv");
 
     }
 
@@ -71,10 +71,8 @@ public class TestSuit {
     }
 
     @Test
-    public void switchTab() {
-        pages.user_info.Operations tab = new pages.user_info.Operations();
-        tab.switchTab("cá nhân");
-
+    public void login(){
+        login();
     }
 
 

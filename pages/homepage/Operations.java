@@ -84,8 +84,6 @@ public class Operations extends Objects {
 
                 }
                 reach_bottom = reachBottom();
-
-                
             }
         }
 

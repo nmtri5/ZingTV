@@ -12,6 +12,12 @@ public class Objects {
     @AndroidFindBy(id = "ll_login_zalo")
     public AndroidElement loginzaloBtn;
 
+    @AndroidFindBy(id = "img_avatar")
+    public AndroidElement user_avarta;
+
+    @AndroidFindBy(id = "tv_program_name")
+    public AndroidElement recentlyitems;
+
     @AndroidFindBy(xpath = "//android.support.v7.app.ActionBar.Tab[@index='0']")
     public AndroidElement trangchu;
 
