@@ -69,6 +69,10 @@ public class AndroidCommonFunctions {
             caps.setCapability("appPackage","com.zing.tv3.qc");
             caps.setCapability("appActivity", "com.vng.zingtv.activity.MainActivity");
         }
+        else if (whichApp.equalsIgnoreCase("baomoi")){
+            caps.setCapability("appPackage", "com.epi");
+            caps.setCapability("appActivity", "com.epi.feature.main.MainActivity");
+        }
         else System.err.print("Cannot find app on your device, please try again");
 
         /**
@@ -145,6 +149,10 @@ public class AndroidCommonFunctions {
         return text;
     }
 
+    public static void scrollAndClick(String visibleText) {
+        driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""+visibleText+"\").instance(0))").click();
+    }
+
     public static void back(){
         driver.pressKeyCode(AndroidKeyCode.BACK);
     }
@@ -157,12 +165,12 @@ public class AndroidCommonFunctions {
         driver.pressKeyCode(AndroidKeyCode.MENU);
     }
 
-    public static String getResult(String result) {
-        String[] abc = result.split("\n");
-        String actualResult = abc[1].replace("equal ","");
-        System.out.println("Tuong - actualResult la: " + actualResult);
-        return actualResult;
-    }
+//    public static String getResult(String result) {
+//        String[] abc = result.split("\n");
+//        String actualResult = abc[1].replace("equal ","");
+//        System.out.println("Tuong - actualResult la: " + actualResult);
+//        return actualResult;
+//    }
 
     public static void waitForScreenToLoad(AppiumDriver lDriver, WebElement element, int seconds){
 

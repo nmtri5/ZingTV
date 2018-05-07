@@ -21,12 +21,12 @@ public class Objects {
     @AndroidFindBy(xpath = "//android.support.v7.app.ActionBar.Tab[@index='0']")
     public AndroidElement trangchu;
 
-    @AndroidFindBy(xpath = "//android.support.v7.app.ActionBar.Tab[@index='1']")
-    public AndroidElement khampha;
+//    @AndroidFindBy(xpath = "//android.support.v7.app.ActionBar.Tab[@index='1']")
+//    public AndroidElement khampha;
 
-    @AndroidFindBy(xpath = "//android.support.v7.app.ActionBar.Tab[@index='2']")
+    @AndroidFindBy(xpath = "//android.support.v7.app.ActionBar.Tab[@index='1']")
     public AndroidElement canhan;
 
-    @AndroidFindBy(xpath = "//android.support.v7.app.ActionBar.Tab[@index='3']")
+    @AndroidFindBy(xpath = "//android.support.v7.app.ActionBar.Tab[@index='2']")
     public AndroidElement them;
 }

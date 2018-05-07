@@ -11,23 +11,22 @@ import java.util.List;
 
 public class Operations extends Objects {
 
-    // todo: input search text,
-    boolean isLogin = false;
+    // todo: input search text
 
     public Operations(){
         PageFactory.initElements(new AppiumFieldDecorator(AndroidCommonFunctions.getApp()), this);
     }
 
     public void wait_for_login_successfully (){
-        AndroidCommonFunctions.waitForScreenToLoad(AndroidCommonFunctions.getApp(), AndroidCommonFunctions.getElement("id", "tv_login"), 5);
+        AndroidCommonFunctions.waitForScreenToLoad(AndroidCommonFunctions.getApp(), AndroidCommonFunctions.getElement("id", "img_avatar"), 5);
 
     }
 
     public void switchTab (String tab){
         if (tab =="trang chủ") {
             trangchu.click();
-        } else if (tab =="khám phá"){
-            khampha.click();
+//        } else if (tab =="khám phá"){
+//            khampha.click();
         } else if (tab =="cá nhân") {
             canhan.click();
         } else if (tab == "thêm") {
@@ -37,21 +36,28 @@ public class Operations extends Objects {
 
     public void login(){
 
+        switchTab("cá nhân");
         if (AndroidCommonFunctions.isExisted("id", "tv_login") == true){
             AndroidCommonFunctions.click("id", "tv_login");
             wait_for_login_successfully();
-            isLogin = true;
-        } else if (AndroidCommonFunctions.isExisted("id", "img_avatar") == true){
-            isLogin = true;
-
         }
-
     }
 
-    public void recentlyplayed(String name) {
-        if (isLogin == false){
-            login();
+    public void logout(){
+        switchTab("thêm");
+        if (AndroidCommonFunctions.isExisted("id", "tv_log_out") == true) {
+            AndroidCommonFunctions.click("id", "tv_log_out");
         } else {
+            AndroidCommonFunctions.scrollAndClick("Đăng xuất");
+
+        }
+    }
+
+
+
+    public void recentlyplayed(String name) {
+            login();
+
             List<AndroidElement> recently_watched = AndroidCommonFunctions.getElements("id", "tv_program_name");
             for (AndroidElement items : recently_watched)
             {
@@ -59,4 +65,4 @@ public class Operations extends Objects {
             }
         }
     }
-}
+

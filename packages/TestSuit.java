@@ -66,13 +66,12 @@ public class TestSuit {
     public void verify_content_homepage() {
         Operations content = new Operations();
         content.verify_content_homepage();
-        
-
     }
 
     @Test
     public void login(){
-        login();
+        pages.user_info.Operations check_login = new pages.user_info.Operations();
+        check_login.login();
     }
 
 
