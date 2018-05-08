@@ -24,21 +24,21 @@ public class TestSuit {
     public void searchSuccess() { //Testcase ID ZTTQTC_5
         Operations search = new Operations();
         search.searchExist("hau due mat troi");
-        search.backtoHome();
+        AndroidCommonFunctions.backtoHome();
     }
 
     @Test
     public void searchFail() { //Testcase ID ZTTQTC_6
         Operations search = new Operations();
         search.searchNotExist("ahjhjhj");
-        search.backtoHome();
+        AndroidCommonFunctions.backtoHome();
     }
 
     @Test
     public void searchSpecialChar(){ //Testcase ID ZTTQTC_7
         Operations search = new Operations();
         search.searchNotExist("@$%#@^%$&@");
-        search.backtoHome();
+        AndroidCommonFunctions.backtoHome();
     }
 
     @Test
@@ -48,18 +48,18 @@ public class TestSuit {
         Operations search = new Operations();
         search.perform_search_action(keyword);
 
-        search.switchTab("nổi bật tab");
+        search.switchSearchTab("nổi bật tab");
         Assert.assertTrue(search.verify_content_suggestion(keyword));
 
-        search.switchTab("chương trình tab");
+        search.switchSearchTab("chương trình tab");
         Assert.assertTrue(search.verify_content_suggestion(keyword));
 
-        search.switchTab("video tab");
+        search.switchSearchTab("video tab");
         Assert.assertTrue(search.verify_content_suggestion(keyword));
 
-        search.switchTab("nghệ sĩ");
+        search.switchSearchTab("nghệ sĩ tab");
         Assert.assertTrue(search.verify_content_suggestion(keyword));
-        search.backtoHome();
+        AndroidCommonFunctions.backtoHome();
     }
 
     @Test
@@ -69,9 +69,12 @@ public class TestSuit {
     }
 
     @Test
-    public void login(){
-        pages.user_info.Operations check_login = new pages.user_info.Operations();
-        check_login.login();
+    public void verify_recently_played_list() throws InterruptedException {
+        pages.user_info.Operations recently_played = new pages.user_info.Operations();
+        recently_played.Scroll_to_random_video_and_click(); //Watch a random video to record history
+        AndroidCommonFunctions.backtoHome(); //Back to home page
+        recently_played.switchTab("cá nhân"); // Change to User info tab
+        Assert.assertTrue(recently_played.recentlyplayed()); //Verify if the recently watched video is appeared in the list
     }
 
 

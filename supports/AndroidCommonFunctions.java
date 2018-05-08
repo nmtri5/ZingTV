@@ -178,4 +178,8 @@ public class AndroidCommonFunctions {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
+    public static void backtoHome(){
+        while(AndroidCommonFunctions.isExisted("id", "tv_search") == false && !AndroidCommonFunctions.isExisted("id", "img_cover" )== false)
+            AndroidCommonFunctions.back();
+    }
 }

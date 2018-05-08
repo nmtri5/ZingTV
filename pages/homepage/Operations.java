@@ -20,10 +20,7 @@ public class Operations extends Objects {
             PageFactory.initElements(new AppiumFieldDecorator(AndroidCommonFunctions.getApp()), this);
 }
 
-        public void backtoHome(){
-            while(!AndroidCommonFunctions.isExisted("id", "tv_search") && !AndroidCommonFunctions.isExisted("id", "img_cover"))
-                AndroidCommonFunctions.back();
-        }
+
 
         public static String deAccent(String str) {
             String nfdNormalizedString = Normalizer.normalize(str, Normalizer.Form.NFD);
@@ -31,7 +28,7 @@ public class Operations extends Objects {
             return pattern.matcher(nfdNormalizedString).replaceAll("");
         }
 
-    public  void swipeVertical(double startPercentage, double finalPercentage, double anchorPercentage) {
+    public void swipeVertical(double startPercentage, double finalPercentage, double anchorPercentage) {
 
         Dimension size = AndroidCommonFunctions.getApp().manage().window().getSize();
         int anchor = (int) (size.width * anchorPercentage);
@@ -97,7 +94,7 @@ public class Operations extends Objects {
             allResult.click();
             String compare = AndroidCommonFunctions.getElement("id", "tv_title").getText();
             Assert.assertEquals(deAccent(keyword).toLowerCase(), deAccent(compare).toLowerCase());
-            switchTab("video");
+            switchSearchTab("video");
             Assert.assertEquals(deAccent(keyword).toLowerCase(), deAccent(compare).toLowerCase());
         }
 
@@ -105,7 +102,7 @@ public class Operations extends Objects {
             perform_search_action(keyword);
             allResult.click();
             AndroidCommonFunctions.isExisted("id", "tv_error");
-            switchTab("video");
+            switchSearchTab("video");
             AndroidCommonFunctions.isExisted("id", "tv_error");
         }
 
@@ -117,18 +114,15 @@ public class Operations extends Objects {
                 return false;
     }
 
-    public void switchTab (String tab){
-        if (tab =="chương trình") {
-            program.click();
-        } else if (tab =="video"){
-            video.click();
-        } else if (tab =="nổi bật tab") {
+    public void switchSearchTab (String tab){
+
+        if (tab =="nổi bật tab") {
             HighlightTab.click();
         } else if (tab == "chương trình tab") {
             ProgramTab.click();
         } else if (tab == "video tab") {
             VideoTab.click();
-        } else if (tab == "nghệ sĩ"){
+        } else if (tab == "nghệ sĩ tab"){
             ArtistTab.click();
         }
     }
