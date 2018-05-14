@@ -77,6 +77,12 @@ public class TestSuit {
         Assert.assertTrue(recently_played.recentlyplayed()); //Verify if the recently watched video is appeared in the list
     }
 
+    @Test
+    public void testFunction(){
+        pages.user_info.Operations test = new pages.user_info.Operations();
+        System.out.println(AndroidCommonFunctions.getElement("text","Trang chủ").getAttribute("selected").toString());
+
+    }
 
 
 //    public String add(String a, String b) {
