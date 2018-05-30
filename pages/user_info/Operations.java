@@ -86,6 +86,7 @@ public class Operations extends Objects {
 
     public void Scroll_to_random_video_and_click() throws InterruptedException {
         login(); //login first
+
         while (AndroidCommonFunctions.isExisted("id", "tv_title") == false){
             swipeVertical(randFloat(0.1, 0.9),randFloat(0.1, 0.9),randFloat(0.1, 0.9));
         }
@@ -94,11 +95,11 @@ public class Operations extends Objects {
         list_video.get(0).click();
         if (AndroidCommonFunctions.isExisted("id", "fab_play")){
             AndroidCommonFunctions.click("id","fab_play");
-            AndroidCommonFunctions.waitForScreenToLoad(AndroidCommonFunctions.getApp(), AndroidCommonFunctions.getElement("id", "play"), 1);
-            AndroidCommonFunctions.backtoHome();
+            AndroidCommonFunctions.waitForScreenToLoad(AndroidCommonFunctions.getApp(), AndroidCommonFunctions.getElement("id", "play"), 10);
+
         }
-        AndroidCommonFunctions.waitForScreenToLoad(AndroidCommonFunctions.getApp(), AndroidCommonFunctions.getElement("id", "play"), 1);
-        AndroidCommonFunctions.backtoHome();
+        AndroidCommonFunctions.waitForScreenToLoad(AndroidCommonFunctions.getApp(), AndroidCommonFunctions.getElement("id", "play"), 10);
+
     }
 
     public boolean recentlyplayed() {

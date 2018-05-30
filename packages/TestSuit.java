@@ -1,5 +1,6 @@
 package packages;
 
+import io.appium.java_client.android.AndroidElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -9,6 +10,7 @@ import supports.AndroidCommonFunctions;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.List;
 
 public class TestSuit {
 
@@ -23,42 +25,73 @@ public class TestSuit {
     @Test
     public void searchSuccess() { //Testcase ID ZTTQTC_5
         Operations search = new Operations();
-        search.searchExist("hau due mat troi");
+        String keyword = "hau due cua than linh";
+        search.deAccent(keyword);
+        search.perform_search_action(keyword);
+        List<AndroidElement> list_search = AndroidCommonFunctions.getElements("id", "tv_title");
+
+        search.switchSearchTab("nổi bật tab");
+        String search_item = list_search.get(0).getText();
+        search_item = search.deAccent(search_item);
+        System.out.println(search_item);
+        Assert.assertTrue(search_item.contains(keyword));
+
+        search.switchSearchTab("chương trình tab");
+        String search_item1 = list_search.get(0).getText();
+        search_item1 = search.deAccent(search_item1);
+        System.out.println(search_item1);
+        Assert.assertTrue(search_item1.contains(keyword));
+
+        search.switchSearchTab("video tab");
+        String search_item2 = list_search.get(0).getText();
+        search_item2 = search.deAccent(search_item2);
+        System.out.println(search_item2);
+        Assert.assertTrue(search_item2.contains(keyword));
+
         AndroidCommonFunctions.backtoHome();
     }
 
     @Test
     public void searchFail() { //Testcase ID ZTTQTC_6
         Operations search = new Operations();
-        search.searchNotExist("ahjhjhj");
+        String keyword = "ghasdfwdsfx";
+        search.deAccent(keyword);
+        search.perform_search_action(keyword);
+
+        search.switchSearchTab("nổi bật tab");
+        AndroidCommonFunctions.isExisted("id", "tv_error");
+
+        search.switchSearchTab("chương trình tab");
+        AndroidCommonFunctions.isExisted("id", "tv_error");
+
+        search.switchSearchTab("video tab");
+        AndroidCommonFunctions.isExisted("id", "tv_error");
+
+        search.switchSearchTab("nghệ sĩ tab");
+        AndroidCommonFunctions.isExisted("id", "tv_error");
+
         AndroidCommonFunctions.backtoHome();
     }
 
     @Test
     public void searchSpecialChar(){ //Testcase ID ZTTQTC_7
         Operations search = new Operations();
-        search.searchNotExist("@$%#@^%$&@");
-        AndroidCommonFunctions.backtoHome();
-    }
-
-    @Test
-    public void searchSuggestion(){ //Testcase ID ZTTQTC_12
-        String keyword = "Hau";
-        keyword = keyword.toLowerCase();
-        Operations search = new Operations();
+        String keyword = "$%^$^$(";
+        search.deAccent(keyword);
         search.perform_search_action(keyword);
 
         search.switchSearchTab("nổi bật tab");
-        Assert.assertTrue(search.verify_content_suggestion(keyword));
+        AndroidCommonFunctions.isExisted("id", "tv_error");
 
         search.switchSearchTab("chương trình tab");
-        Assert.assertTrue(search.verify_content_suggestion(keyword));
+        AndroidCommonFunctions.isExisted("id", "tv_error");
 
         search.switchSearchTab("video tab");
-        Assert.assertTrue(search.verify_content_suggestion(keyword));
+        AndroidCommonFunctions.isExisted("id", "tv_error");
 
         search.switchSearchTab("nghệ sĩ tab");
-        Assert.assertTrue(search.verify_content_suggestion(keyword));
+        AndroidCommonFunctions.isExisted("id", "tv_error");
+
         AndroidCommonFunctions.backtoHome();
     }
 
@@ -77,12 +110,12 @@ public class TestSuit {
         Assert.assertTrue(recently_played.recentlyplayed()); //Verify if the recently watched video is appeared in the list
     }
 
-    @Test
-    public void testFunction(){
-        pages.user_info.Operations test = new pages.user_info.Operations();
-        System.out.println(AndroidCommonFunctions.getElement("text","Trang chủ").getAttribute("selected").toString());
-
-    }
+//    @Test
+//    public void testFunction(){
+//        pages.user_info.Operations test = new pages.user_info.Operations();
+//        System.out.println(AndroidCommonFunctions.getElement("text","Trang chủ").getAttribute("selected").toString());
+//
+//    }
 
 
 //    public String add(String a, String b) {

@@ -44,16 +44,16 @@ public class Objects {
     @AndroidFindBy(id = "tv_error")
     public AndroidElement notFound;
 
-    @AndroidFindBy (xpath = "//android.widget.TextView[@text='Chương trình']")
+    @AndroidFindBy (xpath = "//android.widget.TextView[@text='CHƯƠNG TRÌNH']")
     public AndroidElement ProgramTab;
 
-    @AndroidFindBy (xpath = "//android.widget.TextView[@text='Nổi bật']")
+    @AndroidFindBy (xpath = "//android.widget.TextView[@text='NỔI BẬT']")
     public AndroidElement HighlightTab;
 
-    @AndroidFindBy (xpath = "//android.widget.TextView[@text='video']")
+    @AndroidFindBy (xpath = "//android.widget.TextView[@text='VIDEO']")
     public AndroidElement VideoTab;
 
-    @AndroidFindBy (xpath = "//android.widget.TextView[@text='Nghệ sĩ']")
+    @AndroidFindBy (xpath = "//android.widget.TextView[@text='NGHỆ SĨ']")
     public AndroidElement ArtistTab;
 
 

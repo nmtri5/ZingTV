@@ -25,7 +25,8 @@ public class Operations extends Objects {
         public static String deAccent(String str) {
             String nfdNormalizedString = Normalizer.normalize(str, Normalizer.Form.NFD);
             Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
-            return pattern.matcher(nfdNormalizedString).replaceAll("");
+            return pattern.matcher(nfdNormalizedString).replaceAll("").toLowerCase();
+
         }
 
     public void swipeVertical(double startPercentage, double finalPercentage, double anchorPercentage) {
@@ -84,25 +85,32 @@ public class Operations extends Objects {
             }
         }
 
-        public void perform_search_action(String a) {
+        public void perform_search_action(String keyword) {
             searchField.click();
-            AndroidCommonFunctions.fill("id", "et_search_bar", a);
+            AndroidCommonFunctions.fill("id", "et_search_bar", keyword);
         }
 
-        public void searchExist(String keyword) {
-            perform_search_action(keyword);
-            allResult.click();
-            String compare = AndroidCommonFunctions.getElement("id", "tv_title").getText();
-            Assert.assertEquals(deAccent(keyword).toLowerCase(), deAccent(compare).toLowerCase());
-            switchSearchTab("video");
-            Assert.assertEquals(deAccent(keyword).toLowerCase(), deAccent(compare).toLowerCase());
-        }
+//        public void searchExist(String keyword) {
+//            perform_search_action(keyword);
+//            allResult.click();
+//            String compare = AndroidCommonFunctions.getElement("id", "tv_title").getText();
+//            switchSearchTab("nổi bật tab");
+//            Assert.assertEquals(deAccent(keyword).toLowerCase(), deAccent(compare).toLowerCase());
+//            switchSearchTab("chương trình tab");
+//            Assert.assertEquals(deAccent(keyword).toLowerCase(), deAccent(compare).toLowerCase());
+//            switchSearchTab("video tab");
+//            Assert.assertEquals(deAccent(keyword).toLowerCase(), deAccent(compare).toLowerCase());
+//        }
 
         public void searchNotExist (String keyword) {
             perform_search_action(keyword);
-            allResult.click();
+            switchSearchTab("nổi bật tab");
             AndroidCommonFunctions.isExisted("id", "tv_error");
-            switchSearchTab("video");
+            switchSearchTab("chương trình tab");
+            AndroidCommonFunctions.isExisted("id", "tv_error");
+            switchSearchTab("video tab");
+            AndroidCommonFunctions.isExisted("id", "tv_error");
+            switchSearchTab("nghệ sĩ tab");
             AndroidCommonFunctions.isExisted("id", "tv_error");
         }
 

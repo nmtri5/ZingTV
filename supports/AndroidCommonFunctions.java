@@ -179,13 +179,12 @@ public class AndroidCommonFunctions {
     }
 
     public static void backtoHome(){
-        while (AndroidCommonFunctions.isExisted("id", "com.zing.tv3:id/tabs") == false)
+        System.out.println(isExisted("id", "tabs"));
+        while (!isExisted("id", "tv_search"))
         {
-
-            driver.pressKeyCode(AndroidKeyCode.BACK);
-
+            back();
         }
-        AndroidCommonFunctions.click("text", "Trang chủ");
+        click("text", "Trang chủ");
 
     }
 }
