@@ -2,6 +2,8 @@ package supports;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileDriver;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.android.AndroidKeyCode;
@@ -9,6 +11,7 @@ import io.appium.java_client.remote.MobileCapabilityType;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -172,15 +176,14 @@ public class AndroidCommonFunctions {
 //        return actualResult;
 //    }
 
-    public static void waitForScreenToLoad(AppiumDriver lDriver, WebElement element, int seconds){
+    public static void waitForScreenToLoad(AppiumDriver lDriver, AndroidElement element, int seconds){
 
         WebDriverWait wait = new WebDriverWait(lDriver,seconds);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     public static void backtoHome(){
-        System.out.println(isExisted("id", "tabs"));
-        while (!isExisted("id", "tv_search"))
+        while (!isExisted("id", "tv_search") && !isExisted("id", "tabs"))
         {
             back();
         }

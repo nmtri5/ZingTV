@@ -21,6 +21,9 @@ public class Objects {
     @AndroidFindBy(xpath = "//android.support.v7.app.ActionBar.Tab[@index='0']")
     public AndroidElement trangchu;
 
+    @AndroidFindBy(id = "tv_history_more")
+    public AndroidElement xemthem;
+
 //    @AndroidFindBy(xpath = "//android.support.v7.app.ActionBar.Tab[@index='1']")
 //    public AndroidElement khampha;
 

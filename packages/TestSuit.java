@@ -6,6 +6,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.homepage.Operations;
+import pages.user_info.Objects;
 import supports.AndroidCommonFunctions;
 
 import java.io.IOException;
@@ -110,12 +111,12 @@ public class TestSuit {
         Assert.assertTrue(recently_played.recentlyplayed()); //Verify if the recently watched video is appeared in the list
     }
 
-//    @Test
-//    public void testFunction(){
-//        pages.user_info.Operations test = new pages.user_info.Operations();
-//        System.out.println(AndroidCommonFunctions.getElement("text","Trang chủ").getAttribute("selected").toString());
-//
-//    }
+    @Test
+    public void verify_edit_recently_played_list(){
+        pages.user_info.Operations edit_recently_played = new pages.user_info.Operations();
+        edit_recently_played.switchTab("cá nhân");
+
+    }
 
 
 //    public String add(String a, String b) {
